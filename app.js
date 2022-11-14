@@ -10,6 +10,8 @@ const session=require('express-session')
 const MongoStore=require('connect-mongo')
 const indexroutes=require('./routes/index')
 const authroutes=require('./routes/auth')
+const medicinesroutes=require('./routes/medicines')
+
 
 //load config
 dotenv.config({path:'./config/config.env'})
@@ -20,7 +22,8 @@ require('./config/passport')(passport)
 connectDB()
 
 const app=express()
-
+app.use(express.urlencoded({extended:false}))
+app.use(express.json())
 if(process.env.NODE_ENV==='development'){
     app.use(morgan('dev'))
 }
@@ -43,6 +46,7 @@ app.use(passport.session())
 //routes
 app.use('/',indexroutes)
 app.use('/auth',authroutes)
+app.use('/medicines',medicinesroutes)
 //static folder
 
 app.use(express.static('public'));

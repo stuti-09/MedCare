@@ -30,9 +30,13 @@ body {
   width:100%;
   background-color: #fff;
 }
+
 body {
   color: black;
   text-align: center;
+
+}
+h2,h4{
   text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 
@@ -165,4 +169,5 @@ p{
 .lead{
     font-size: 20px;
 }
+
 

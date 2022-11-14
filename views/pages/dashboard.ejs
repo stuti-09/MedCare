@@ -8,6 +8,49 @@
     
     <h2>Welcome <%- name %></h2>
     <h4>Here are your medicines</h4>
+    
+    <% if(medicines!=''){%>
+        <div class="table-responsive pt-5">
+
+        <table class="table table-striped table-hover pt-4">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Time</th>
+                    <th>Dosage</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% medicines.forEach(function(medicines, index){ %>
+                    <tr>
+                        <td></td>
+                        <td><%- medicines.name%></td>
+                        <td><%- medicines.time%></td>
+                        <td><%- medicines.dosage%></td>
+                        <td><span class="dash-status"><%- medicines.status%></span></td>
+                        <td>
+                            <a href="/medicines/edit/<%- medicines._id %>" class="btn btn-float">
+                                <i class="fas fa-edit"></i>
+                            </a>
+            
+                            <form action="/medicines/<%- medicines._id %>" method="POST" id="delete-form">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn red">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    <%}%>
     <%- include('../partials/script'); %>
+    <%- include('../partials/add_btn'); %>
+    
 </body>
 </html>
